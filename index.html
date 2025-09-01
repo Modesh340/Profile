@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modesh Ankinapalli - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            box-shadow: 0 2px 20px rgba(255, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff0000;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff0000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(255, 0, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #ff0000, #fff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #ff0000;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: #ff0000;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .contact-info {
+            background: rgba(255, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .contact-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-item strong {
+            color: #ff0000;
+            width: 80px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff0000;
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+        }
+
+        .skill-card h3 {
+            color: #ff0000;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            color: #ff0000;
+        }
+
+        /* Education Section */
+        .education-timeline {
+            position: relative;
+            margin: 50px 0;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ff0000;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .timeline-item h3 {
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .institution {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .percentage {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff0000;
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+        }
+
+        .project-title {
+            color: #ff0000;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .project-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .project-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .project-features li::before {
+            content: '▸';
+            color: #ff0000;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            padding: 80px 0;
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-button:hover::before {
+            left: 100%;
+        }
+
+        .download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <div class="logo">MA</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#download">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1>Modesh Ankinapalli</h1>
+            <p>Computer Science & Data Science Engineering Student</p>
+            <a href="#about" class="cta-button">Discover More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <span>modeshreddya@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone:</strong>
+                        <span>8790026979</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>DOB:</strong>
+                        <span>1 Jan 2005</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Languages:</strong>
+                        <span>English, Telugu, Hindi</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Interests:</strong>
+                        <span>Writing, Content Creation</span>
+                    </div>
+                </div>
+                <div class="about-text fade-in">
+                    <p>I aspire to work as an effective team member in a dynamic organization. I look forward to obtaining a respectable position which would enable me to use my strong educational background and ability to contribute effectively in pursuit of set corporate goals and add value to the organization.</p>
+                    
+                    <p>As a Computer Science and Data Science Engineering student, I am passionate about technology and innovation. I possess a positive attitude for learning new things, excellent multitasking abilities, and the capability to work under pressure while maintaining good communication skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>C Programming</li>
+                        <li>Python</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3>Operating Systems</h3>
+                    <ul class="skill-list">
+                        <li>SQL Server</li>
+                        <li>Database Management</li>
+                    </ul>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3>Other Tools</h3>
+                    <ul class="skill-list">
+                        <li>Microsoft Word</li>
+                        <li>Microsoft PowerPoint</li>
+                        <li>Web Development</li>
+                    </ul>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3>Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Quick Learner</li>
+                        <li>Smart Working</li>
+                        <li>Multi-tasking</li>
+                        <li>Self-motivated</li>
+                        <li>Good Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Academic Qualification</h2>
+            <div class="education-timeline">
+                <div class="timeline-item fade-in">
+                    <h3>B.Tech (Computer Science Engineering)</h3>
+                    <div class="institution">Audi Sankara College of Engineering and Technology, Gudur</div>
+                    <div>JNTU University, Anantapur</div>
+                    <div>Currently Pursuing</div>
+                    <div class="percentage">75% (Current)</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>Intermediate</h3>
+                    <div class="institution">Sri Chaitanya Junior College, Nellore</div>
+                    <div>Board of Intermediate, Andhra Pradesh</div>
+                    <div>Year: 2022</div>
+                    <div class="percentage">54.4%</div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>S.S.C</h3>
+                    <div class="institution">Sri Krishna Vibgyor EM High School, Annamaya</div>
+                    <div>Board of Secondary Education, Andhra Pradesh</div>
+                    <div>Year: 2020</div>
+                    <div class="percentage">90%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Project</h2>
+            <div class="project-card fade-in">
+                <h3 class="project-title">STUDY.DOX</h3>
+                <p><strong>Aim:</strong> Study.Dox is a web-based application designed to help students access academic resources efficiently.</p>
+                <ul class="project-features">
+                    <li>Easy Access to Study Materials</li>
+                    <li>Seamless Learning Experiences</li>
+                    <li>Exam Preparation Made Easy</li>
+                    <li>Time Saving Solutions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Download Resume</h2>
+            <p class="fade-in" style="margin-bottom: 30px; font-size: 1.2rem; color: #ccc;">
+                Get a copy of my complete resume with all details
+            </p>
+            <a href="#" class="download-button fade-in" onclick="downloadResume()">
+                📄 Download PDF Resume
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Download resume function
+        function downloadResume() {
+            // Create resume content based on the provided information
+            const resumeContent = `MODESH ANKINAPALLI
+Computer Science & Data Science Engineering
+
+Email: modeshreddya@gmail.com
+Contact: 8790026979
+
+CAREER OBJECTIVE:
+I aspire to work as an effective team member in your company. I look forward to obtain a respectable position which would enable me to use my strong educational background and ability to contribute effectively in pursuit of set corporate goals and add value to the organization.
+
+ACADEMIC QUALIFICATION:
+• B.Tech (CSE) - Audi Sankara College of Engineering and Technology, Gudur - JNTU University, Anantapur (Pursuing - 75%)
+• Intermediate - Sri Chaitanya Junior College, Nellore - Board of Intermediate, Andhra Pradesh (2022 - 54.4%)
+• S.S.C - Sri Krishna Vibgyor EM High School, Annamaya - Board of Secondary Education, Andhra Pradesh (2020 - 90%)
+
+TECHNICAL SKILLS:
+Programming Languages: C, Python, MySQL
+Operating System: SQL SERVER
+Others: Microsoft Word and PowerPoint
+
+PROJECT:
+STUDY.DOX - A web-based application designed to help students access academic resources efficiently
+• Easy Access to Study Materials
+• Seamless Learning Experiences
+• Exam preparation Made easy
+• Time saving
+
+PERSONAL SKILLS:
+• Positive attitude for learning new things
+• Multi-Tasking
+• Ability to work under pressure
+• Good communication skills
+• Quick learner, Smart working
+• Languages Known: English, Telugu, Hindi
+• Self-Motivated
+
+ACTIVITIES/HONORS:
+• Participated in paper presentation on Artificial intelligence
+• Actively Participated in the culture events conduct at the college and school levels
+• Participated in Hackathon
+
+PERSONAL PROFILE:
+Father Name: A. Obul Reddy
+Nationality: Indian
+Date of Birth: 1 Jan 2005
+Marital Status: Un-Married
+Interests: Writing, Content creator`;
+
+            // Create and download file
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Modesh_Ankinapalli_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Initialize animations
+        window.addEventListener('load', function() {
+            document.querySelector('.hero-content').classList.add('visible');
+        });
+    </script>
+</body>
+</html>
